@@ -5,10 +5,12 @@ import android.content.Context;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.jgmanz.jogal.teacherdasboard.models.Alumno;
+import com.jgmanz.jogal.teacherdasboard.models.Edificio;
 import com.jgmanz.jogal.teacherdasboard.models.Grupo;
 import com.jgmanz.jogal.teacherdasboard.models.Horario;
 import com.jgmanz.jogal.teacherdasboard.models.Materia;
 import com.jgmanz.jogal.teacherdasboard.models.Profesor;
+import com.jgmanz.jogal.teacherdasboard.models.TipoProfesor;
 
 import java.util.ArrayList;
 
@@ -24,6 +26,8 @@ public class DataController {
     private ArrayList<Grupo> lsGrupo = new ArrayList<Grupo>();
     private ArrayList<Horario> lsHorario = new ArrayList<Horario>();
     private ArrayList<Materia> lsMateria = new ArrayList<Materia>();
+    private ArrayList<Edificio> lsEdificio = new ArrayList<Edificio>();
+
 
     private String USEREMAIL = "useremail";
     private String USERPASSWORD = "userpass";
@@ -64,6 +68,14 @@ public class DataController {
         lsProfesor = gs.fromJson(LocalData.getPreference(con, LSPROFESOR), tokenProfesor.getType());
         this.usuarioemail = LocalData.getPreference(con, USEREMAIL);
         this.usuariopassword = LocalData.getPreference(con, USERPASSWORD);
+        this.lsProfesor.add(new Profesor("jose", "","","","gmanzanero@utrm.com",
+                "", TipoProfesor.PARCIAL,"123"));
+        this.lsEdificio.add(new Edificio("Eidificio A", 'a', 0,0));
+        this.lsEdificio.add(new Edificio("Eidificio B", 'b', 0,0));
+        this.lsEdificio.add(new Edificio("Eidificio C", 'c', 0,0));
+        this.lsEdificio.add(new Edificio("Eidificio D", 'd', 0,0));
+
+
     }
 
     public void addGrupo(Grupo g, Context con)
@@ -90,6 +102,14 @@ public class DataController {
 
     public String getUsuariopassword() {
         return usuariopassword;
+    }
+
+    public ArrayList<Edificio> getLsEdificio() {
+        return lsEdificio;
+    }
+
+    public void setLsEdificio(ArrayList<Edificio> lsEdificio) {
+        this.lsEdificio = lsEdificio;
     }
 
     public void setUsuariopassword(String usuariopassword) {

@@ -41,8 +41,10 @@ public class Edificio {
 	public void setLog(float log) {
 		this.log = log;
 	}
-	
-	
-	
 
+
+	@Override
+	public String toString() {
+		return nombre;
+	}
 }

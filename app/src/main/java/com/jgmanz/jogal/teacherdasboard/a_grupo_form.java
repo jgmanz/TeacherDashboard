@@ -1,11 +1,13 @@
 package com.jgmanz.jogal.teacherdasboard;
 
+import android.media.MediaCodecInfo;
 import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -30,6 +32,11 @@ public class a_grupo_form extends AppCompatActivity {
         txt_grupo_form_btn = findViewById(R.id.txt_grupo_form_btn);
         sp_grupo_form_edificio = findViewById(R.id.sp_grupo_form_edificio);
 
+        ArrayAdapter<Edificio> arrayAdapter = new ArrayAdapter(getApplicationContext(),
+                android.R.layout.simple_spinner_dropdown_item, DataController.getInstance().getLsEdificio());
+        arrayAdapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item);
+
+        sp_grupo_form_edificio.setAdapter(arrayAdapter);
 
         txt_grupo_form_btn.setOnClickListener(new View.OnClickListener() {
             @Override

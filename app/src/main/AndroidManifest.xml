@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.jgmanz.jogal.teacherdasboard">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".a_login" />
+        <activity
+            android:name=".inicioapp"
+            android:theme="@style/splashScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".a_registro" />
+        <activity android:name=".a_dashboard" ></activity>
+        <activity
+            android:name=".a_grupos"
+            android:label="@string/title_activity_a_grupos"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".a_grupo_form"></activity>
+    </application>
+
+</manifest>

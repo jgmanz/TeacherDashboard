@@ -27,5 +27,4 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".a_grupo_form"></activity>
     </application>
-
 </manifest>

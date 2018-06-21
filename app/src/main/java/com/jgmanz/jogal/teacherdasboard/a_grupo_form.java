@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,6 +23,7 @@ public class a_grupo_form extends AppCompatActivity {
     EditText txt_grupo_form_grupo;
     Button txt_grupo_form_btn;
     Spinner sp_grupo_form_edificio;
+    Edificio edificioSeleccionado;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,10 +36,20 @@ public class a_grupo_form extends AppCompatActivity {
 
         ArrayAdapter<Edificio> arrayAdapter = new ArrayAdapter(getApplicationContext(),
                 android.R.layout.simple_spinner_dropdown_item, DataController.getInstance().getLsEdificio());
-        arrayAdapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item);
+        //arrayAdapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item);
 
         sp_grupo_form_edificio.setAdapter(arrayAdapter);
+        sp_grupo_form_edificio.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                edificioSeleccionado = DataController.getInstance().getLsEdificio().get(position);
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
         txt_grupo_form_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -1,5 +1,6 @@
 package com.jgmanz.jogal.teacherdasboard;
 
+import android.content.Intent;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -26,7 +27,8 @@ public class a_login extends AppCompatActivity {
     EditText txt_login_password;
     Button btn_login_entrar;
     Button btn_login_registro;
-    CheckBox chk_login_recordar ;
+    CheckBox chk_login_recordar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,13 +56,12 @@ public class a_login extends AppCompatActivity {
                         if (profesor.getClaveacceso().equals(txt_login_password.getText().toString())
                                 && profesor.getEmail().equals(txt_login_email.getText().toString())) {
                             if (chk_login_recordar.isChecked()) {
-                                LocalData.savePreferences(getApplicationContext(), "usremail",
-                                        txt_login_email.getText().toString());
-
-                                LocalData.savePreferences(getApplicationContext(), "userpass",
-                                        txt_login_password.getText().toString());
+                                DataController.getInstance().saveUseremailpassword(txt_login_email.getText().toString()
+                                ,txt_login_password.getText().toString(), getApplicationContext());
                             }
                             DataController.getInstance().setUsuario(profesor);
+                            Intent int_s = new Intent(getApplicationContext(), a_dashboard.class);
+                            startActivity(int_s);
                             datoscorrectos = true;
                             break;
                         }

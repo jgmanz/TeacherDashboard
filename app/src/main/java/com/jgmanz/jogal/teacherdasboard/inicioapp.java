@@ -35,11 +35,9 @@ public class inicioapp extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... voids) {
-
-
             DataController.getInstance().loadLocalData(getApplicationContext());
             try {
-                Thread.sleep(5000);
+                Thread.sleep(3000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

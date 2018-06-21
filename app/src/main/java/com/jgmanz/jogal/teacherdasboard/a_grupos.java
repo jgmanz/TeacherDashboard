@@ -1,5 +1,6 @@
 package com.jgmanz.jogal.teacherdasboard;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -28,8 +29,9 @@ public class a_grupos extends AppCompatActivity {
         setContentView(R.layout.activity_a_grupos);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        fab = findViewById(R.id.fab);
         recycler_grupos = findViewById(R.id.recycler_grupos);
-        recycler_grupos.setHasFixedSize(true);
+        recycler_grupos.setHasFixedSize(false);
         mLayoutManager = new LinearLayoutManager(this);
         recycler_grupos.setLayoutManager(mLayoutManager);
         mAdapter = new grupos_adapter(getApplicationContext(), DataController.getInstance().getLsGrupo());
@@ -38,8 +40,8 @@ public class a_grupos extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent int_nuevo = new Intent(getApplicationContext(), a_grupo_form.class);
+                startActivity(int_nuevo);
             }
         });
 

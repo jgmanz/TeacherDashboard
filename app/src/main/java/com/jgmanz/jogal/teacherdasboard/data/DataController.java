@@ -63,11 +63,20 @@ public class DataController {
         TypeToken<ArrayList<Alumno>> tokenAlumno = new TypeToken<ArrayList<Alumno>>() {};
         TypeToken<ArrayList<Grupo>> tokenGrupo = new TypeToken<ArrayList<Grupo>>() {};
         Gson gs = new Gson();
-        lsAlumno = gs.fromJson(LocalData.getPreference(con, LSALUMNO), tokenAlumno.getType());
+        lsAlumno = gs.fromJson(
+                LocalData.getPreference(con, LSALUMNO),
+                tokenAlumno.getType());
         lsGrupo = gs.fromJson(LocalData.getPreference(con, LSGRUPO),tokenGrupo.getType());
         lsProfesor = gs.fromJson(LocalData.getPreference(con, LSPROFESOR), tokenProfesor.getType());
         this.usuarioemail = LocalData.getPreference(con, USEREMAIL);
         this.usuariopassword = LocalData.getPreference(con, USERPASSWORD);
+        //prevenir arrays nulos
+        lsGrupo = lsGrupo==null ?  new ArrayList<Grupo>():lsGrupo;
+        lsProfesor = lsProfesor == null?new ArrayList<Profesor>(): lsProfesor;
+        lsEdificio = lsEdificio == null?new ArrayList<Edificio>(): lsEdificio;
+        lsAlumno = lsAlumno == null?new ArrayList<Alumno>(): lsAlumno;
+
+
         this.lsProfesor.add(new Profesor("jose", "","","","gmanzanero@utrm.com",
                 "", TipoProfesor.PARCIAL,"123"));
         this.lsEdificio.add(new Edificio("Eidificio A", 'a', 0,0));
@@ -154,5 +163,10 @@ public class DataController {
 
     public void setLsMateria(ArrayList<Materia> lsMateria) {
         this.lsMateria = lsMateria;
+    }
+
+    public void saveUseremailpassword(String s, String s1, Context con) {
+        LocalData.savePreferences(con, USEREMAIL,s);
+        LocalData.savePreferences(con, USERPASSWORD,s1);
     }
 }

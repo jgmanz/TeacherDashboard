@@ -36,8 +36,9 @@ public class grupos_adapter extends RecyclerView.Adapter<grupos_adapter.ViewHold
     public grupos_adapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // Llena la vista
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.materia_row, parent, false);
+                .inflate(R.layout.grupo_row, parent, false);
         ViewHolder holder = new ViewHolder(view);
+
         return holder;
     }
 
@@ -45,13 +46,22 @@ public class grupos_adapter extends RecyclerView.Adapter<grupos_adapter.ViewHold
     public void onBindViewHolder(@NonNull grupos_adapter.ViewHolder holder, int position) {
 
         Grupo g = lsGrupos.get(position);
+        if(g.getEdificio().getLetra() == 'A')
+        {
+            holder.grupo_row_img.setVisibility(View.GONE);
+        }
         holder.grupo_row_nombre.setText(g.getNombregrupo());
         holder.grupo_row_edificio.setText(g.getEdificio().getNombre());
     }
 
     @Override
     public int getItemCount() {
-        return lsGrupos.size();
+        if(lsGrupos == null)
+        {
+            return 0;
+        }else {
+            return lsGrupos.size();
+        }
     }
     public static class ViewHolder extends RecyclerView.ViewHolder
     {
@@ -61,7 +71,7 @@ public class grupos_adapter extends RecyclerView.Adapter<grupos_adapter.ViewHold
         public ViewHolder(View itemView) {
             super(itemView);
             grupo_row_edificio = itemView.findViewById(R.id.grupo_row_edificio);
-            grupo_row_edificio = itemView.findViewById(R.id.grupo_row_nombre);
+            grupo_row_nombre = itemView.findViewById(R.id.grupo_row_nombre);
             grupo_row_img = itemView.findViewById(R.id.grupo_row_img);
 
         }

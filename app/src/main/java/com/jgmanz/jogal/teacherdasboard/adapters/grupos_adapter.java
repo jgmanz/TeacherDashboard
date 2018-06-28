@@ -11,7 +11,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jgmanz.jogal.teacherdasboard.R;
+import com.jgmanz.jogal.teacherdasboard.data.DataController;
 import com.jgmanz.jogal.teacherdasboard.models.Grupo;
+import com.jgmanz.jogal.teacherdasboard.models.TipoProfesor;
 
 import junit.framework.TestCase;
 
@@ -45,6 +47,11 @@ public class grupos_adapter extends RecyclerView.Adapter<grupos_adapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull grupos_adapter.ViewHolder holder, int position) {
 
+        if(DataController.getInstance().getUsuario().getTipoProfesor()
+                == TipoProfesor.PLANTA)
+        {
+
+        }
         Grupo g = lsGrupos.get(position);
         if(g.getEdificio().getLetra() == 'A')
         {
@@ -56,12 +63,7 @@ public class grupos_adapter extends RecyclerView.Adapter<grupos_adapter.ViewHold
 
     @Override
     public int getItemCount() {
-        if(lsGrupos == null)
-        {
-            return 0;
-        }else {
             return lsGrupos.size();
-        }
     }
     public static class ViewHolder extends RecyclerView.ViewHolder
     {

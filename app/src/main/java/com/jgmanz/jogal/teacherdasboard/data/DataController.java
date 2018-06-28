@@ -1,7 +1,14 @@
 package com.jgmanz.jogal.teacherdasboard.data;
 
 import android.content.Context;
+import android.provider.ContactsContract;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.jgmanz.jogal.teacherdasboard.models.Alumno;
@@ -12,7 +19,29 @@ import com.jgmanz.jogal.teacherdasboard.models.Materia;
 import com.jgmanz.jogal.teacherdasboard.models.Profesor;
 import com.jgmanz.jogal.teacherdasboard.models.TipoProfesor;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class DataController {
 
@@ -29,6 +58,7 @@ public class DataController {
     private ArrayList<Edificio> lsEdificio = new ArrayList<Edificio>();
 
 
+    private Context con;
     private String USEREMAIL = "useremail";
     private String USERPASSWORD = "userpass";
     private String LSPROFESOR = "lsprofesor";
@@ -84,6 +114,47 @@ public class DataController {
         this.lsEdificio.add(new Edificio("Eidificio C", 'c', 0,0));
         this.lsEdificio.add(new Edificio("Eidificio D", 'd', 0,0));
 
+
+    }
+
+
+    public void loadAuthApi()
+    {
+        String urlString = "http://187.217.205.58:7000/auth/login"; // URL to call
+
+        String email = "ekoepp@gmail.com"; //data to post
+        String clave = "12345";
+
+        HttpClient httpclient = new DefaultHttpClient();
+        HttpPost httppost = new HttpPost(urlString);
+        String result ="";
+        try {
+            List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+            nameValuePairs.add(new BasicNameValuePair("email", email));
+            nameValuePairs.add(new BasicNameValuePair("password", clave));
+            httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+            HttpResponse response = httpclient.execute(httppost);
+            String response1 = response.toString();
+            InputStream inputStream = response.getEntity().getContent();
+            if(inputStream != null)
+                result = convertInputStreamToString(inputStream);
+            String ver = result;
+        } catch (ClientProtocolException e) {
+            String err = e.getMessage();
+        } catch (IOException e) {
+            String err = e.getMessage();
+        }
+
+    }
+    public String convertInputStreamToString(InputStream inputStream) throws IOException{
+        BufferedReader bufferedReader = new BufferedReader( new InputStreamReader(inputStream));
+        String line = "";
+        String result = "";
+        while((line = bufferedReader.readLine()) != null)
+            result += line;
+
+        inputStream.close();
+        return result;
 
     }
 

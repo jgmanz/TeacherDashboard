@@ -47,4 +47,5 @@ public class Edificio {
 	public String toString() {
 		return nombre;
 	}
+	/**/
 }

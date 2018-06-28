@@ -35,8 +35,8 @@ public class a_grupo_form extends AppCompatActivity {
         sp_grupo_form_edificio = findViewById(R.id.sp_grupo_form_edificio);
 
         ArrayAdapter<Edificio> arrayAdapter = new ArrayAdapter(getApplicationContext(),
-                android.R.layout.simple_spinner_dropdown_item, DataController.getInstance().getLsEdificio());
-        //arrayAdapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item);
+                R.layout.spinner_row, DataController.getInstance().getLsEdificio());
+        arrayAdapter.setDropDownViewResource( R.layout.spinner_row);
 
         sp_grupo_form_edificio.setAdapter(arrayAdapter);
         sp_grupo_form_edificio.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

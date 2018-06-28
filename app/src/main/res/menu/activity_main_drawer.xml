@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_grupos"
+            android:icon="@drawable/ic_action_grupo"
+            android:title="Grupos" />
+        <item
+            android:id="@+id/nav_materia"
+            android:icon="@drawable/ic_action_matera"
+            android:title="Materias" />
+        <item
+            android:id="@+id/nav_alumnos"
+            android:icon="@drawable/ic_action_face"
+            android:title="Alumnos" />
+        <item
+            android:id="@+id/nav_asistencia"
+            android:icon="@drawable/ic_action_check"
+            android:title="Asistencias" />
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Share" />
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Send" />
+        </menu>
+    </item>
+
+</menu>

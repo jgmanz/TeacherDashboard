@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.jgmanz.jogal.teacherdasboard">
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -13,6 +14,7 @@
         <activity
             android:name=".inicioapp"
             android:theme="@style/splashScreen">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,11 +22,20 @@
             </intent-filter>
         </activity>
         <activity android:name=".a_registro" />
-        <activity android:name=".a_dashboard" ></activity>
+        <activity android:name=".a_dashboard" />
         <activity
             android:name=".a_grupos"
             android:label="@string/title_activity_a_grupos"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".a_grupo_form"></activity>
+        <activity android:name=".a_grupo_form" />
+        <activity
+            android:name=".a_alumnos"
+            android:label="@string/title_activity_a_alumnos"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/title_activity_main"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
+
 </manifest>

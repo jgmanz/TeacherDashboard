@@ -16,10 +16,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ApiServiceController {
-    private String URL = "http://0.0.0.0:7000/";
+    private String URL = "http://187.217.205.58:7000";
     private String LOGINMETHOD = "auth/login";
 
-    private String email = "mail@gmail.com";
+    private String email = "ekoepp@gmail.com";
     private String clave = "12345";
 
 
@@ -41,7 +41,6 @@ public class ApiServiceController {
 
     public void authApi(String user, String psw, Context con, final ApiWebListener listener)
     {
-
         RequestQueue queue = Volley.newRequestQueue(con);
         ApiService stringRequest = new ApiService(Request.Method.POST, URL+LOGINMETHOD,
                 new Response.Listener<String>() {

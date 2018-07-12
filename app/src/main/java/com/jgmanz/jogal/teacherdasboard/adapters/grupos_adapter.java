@@ -41,17 +41,13 @@ public class grupos_adapter extends RecyclerView.Adapter<grupos_adapter.ViewHold
                 .inflate(R.layout.grupo_row, parent, false);
         ViewHolder holder = new ViewHolder(view);
 
+
         return holder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull grupos_adapter.ViewHolder holder, int position) {
 
-        if(DataController.getInstance().getUsuario().getTipoProfesor()
-                == TipoProfesor.PLANTA)
-        {
-
-        }
         Grupo g = lsGrupos.get(position);
         if(g.getEdificio().getLetra() == 'A')
         {
@@ -59,6 +55,7 @@ public class grupos_adapter extends RecyclerView.Adapter<grupos_adapter.ViewHold
         }
         holder.grupo_row_nombre.setText(g.getNombregrupo());
         holder.grupo_row_edificio.setText(g.getEdificio().getNombre());
+
     }
 
     @Override
@@ -67,7 +64,7 @@ public class grupos_adapter extends RecyclerView.Adapter<grupos_adapter.ViewHold
     }
     public static class ViewHolder extends RecyclerView.ViewHolder
     {
-        ImageView grupo_row_img;
+        ImageView grupo_row_img,grupo_row_edit2 ;
         TextView grupo_row_edificio;
         TextView grupo_row_nombre;
         public ViewHolder(View itemView) {
@@ -75,6 +72,7 @@ public class grupos_adapter extends RecyclerView.Adapter<grupos_adapter.ViewHold
             grupo_row_edificio = itemView.findViewById(R.id.grupo_row_edificio);
             grupo_row_nombre = itemView.findViewById(R.id.grupo_row_nombre);
             grupo_row_img = itemView.findViewById(R.id.grupo_row_img);
+            grupo_row_edit2 =  itemView.findViewById(R.id.grupo_row_edit2);
 
         }
     }

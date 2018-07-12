@@ -17,6 +17,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.jgmanz.jogal.teacherdasboard.data.ApiServiceController;
 import com.jgmanz.jogal.teacherdasboard.data.DataController;
+import com.jgmanz.jogal.teacherdasboard.data.MongoDBData;
 
 import org.json.JSONObject;
 
@@ -29,27 +30,36 @@ public class inicioapp extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inicioapp);
-        ApiServiceController.getInstance().authApi("mail@gmail.com", "12345", getApplicationContext(),
+
+
+        /****
+         * Ejemplo api restfull
+         */
+        /*ApiServiceController.getInstance().authApi("mail@gmail.com", "12345", getApplicationContext(),
                 new ApiServiceController.ApiWebListener() {
             @Override
             public void onSuccess(String s) {
                 Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
                 String resultad = s;
             }
-
-            @Override
-            public void onError(VolleyError error) {
-                try {
-                    //Obtener el mensaje de error del servidor
-                    //convertir el byte[] a un String
-                    String res  = ApiServiceController.getInstance().convertInputStreamToString(new ByteArrayInputStream(error.networkResponse.data));
-                    Toast.makeText(getApplicationContext(), res, Toast.LENGTH_SHORT).show();
-                } catch (IOException e) {
-                    e.printStackTrace();
+                        public void onError(VolleyError error) {
+                            if(error.networkResponse != null) {
+                            try {
+                                //Obtener el mensaje de error del servidor
+                                        //convertir el byte[] a un String
+                                            String res = ApiServiceController.getInstance().convertInputStreamToString(
+                                                    new ByteArrayInputStream(error.networkResponse.data));
+                                            Toast.makeText(getApplicationContext(), res, Toast.LENGTH_SHORT).show();
+                            }
+                        catch (IOException e) {
+                            e.printStackTrace();
+                        }
                 }
             }
         });
+        */
 
+        MongoDBData.getInstance().getData();
         DataloadAsync dataloadAsync = new DataloadAsync();
         dataloadAsync.execute();
     }
